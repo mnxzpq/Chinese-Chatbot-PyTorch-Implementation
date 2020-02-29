@@ -10,6 +10,7 @@ class Analysis(HTTPMethodView):
         data = json.loads(request.json)
         req_text = data.get("req_text")
         rsp_text = await sync_to_async(robot.answer)(req_text)
+        rsp_status = 200
         if rsp_text == "</UNK>":
-            rsp_text = ""
-        return jsp({"rsp_text": rsp_text})
+            rsp_status = 404
+        return jsp({"rsp_text": rsp_text}, status=rsp_status)
