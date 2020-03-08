@@ -1,0 +1,13 @@
+version: '3'
+services:
+  py-robot:
+    image:  chat-bot
+    container_name:  chat-bot
+    ports:
+      - 10001:10001
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "100m"
+        max-file: "3"
+        compress: "true"
