@@ -1,5 +1,11 @@
 FROM python:3.7-slim
 
+RUN apt-get update \
+ && DEBIAN_FRONTEND=noninteractive \
+    apt-get install -y build-essential \
+ && apt-get clean \
+ && rm -rf /var/lib/apt/lists/*
+
 ADD . /Chinese-Chatbot-PyTorch-Implementation
 WORKDIR /Chinese-Chatbot-PyTorch-Implementation
 RUN pip install -r requirements.txt
